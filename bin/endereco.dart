@@ -5,4 +5,11 @@ class Endereco {
   String? complemento;
   String? bairro;
   String? estado;
+  Endereco(
+      {required this.bairro,
+      this.cep,
+      this.complemento,
+      this.estado,
+      this.numero,
+      this.rua});
 }

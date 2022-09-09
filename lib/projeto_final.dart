@@ -38,31 +38,3 @@ buscaCnpj() {
 listarCadastro() {
   print('${cadastro().sort}');
 }
-
-/*cadastrar(){
-  Map<String , dynamic> cadastro= {};
-print('===Cadastro===\nDigite seu nome:');
-cadastro['nome'] = stdin.readLineSync();
-
-print('Digite seu telefone:');
-String? telefone = stdin.readLineSync();
-cadastro['telefone'] = telefone;
-
-// print('Digite sua id:');
-// String? id = stdin.readLineSync();
-// cadastro['id'] = id;
-// print('$cadastro\n');
-// cadastros.add(cadastro);
-}
-imprimir(){
-  for(var i = 0; i < cadastros.length;i++){
-    print('ID $i - ${cadastros[i]}');
-  }
-}
-remover(){
-  print('Qual item deseja remover? ');
-  imprimir();
-  int input = int.parse(stdin.readLineSync()!);
-  int item = int.parse('$input');
-  cadastros.removeAt(item);
-}*/
