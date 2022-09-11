@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:projeto_final/projeto_final.dart' as projeto_final;
-
 import 'endereco.dart';
 
+// importar as bibliotecas
 List<Map<String, dynamic>> cadastros = [];
 void main(List<String> arguments) {
   bool condicao = true;
@@ -29,6 +29,7 @@ void main(List<String> arguments) {
   }
 }
 
+// ligar os input para objetos
 cadastrarEmpresa() {
   Map<String, dynamic> cadastro = {};
   print('Cadastro\nDigite seu CNPJ:');
