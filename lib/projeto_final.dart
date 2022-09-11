@@ -23,18 +23,14 @@ Endereço: Rua Ângelo Alberto Nesti, 639, Bussocaba, Osasco/SP, 06.053-060*/
 
 import 'dart:io';
 
-cadastro() {
-  stdout.write('Seja bem vindo ao sistema de cadastro\nInsira seus dados: ');
-}
-
 buscaCpf() {
   stdout.write('Insira seu CPF para encontrar sua empresa: ');
+
+  // [0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}
 }
 
 buscaCnpj() {
   stdout.write('Insira seu CNPJ para encontrar sua empresa: ');
-}
 
-listarCadastro() {
-  print('${cadastro().sort}');
+  //[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2}
 }

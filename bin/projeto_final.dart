@@ -1,24 +1,26 @@
 import 'dart:io';
 import 'package:projeto_final/projeto_final.dart' as projeto_final;
 
+import 'endereco.dart';
+
 List<Map<String, dynamic>> cadastros = [];
 void main(List<String> arguments) {
   bool condicao = true;
   print("\x1B[2J\x1B[0;0H");
   while (condicao) {
     print(
-        'Agenda de contato\nPara cadastrar digite *cadastro*\nRemover um item *remover*\nVer lista de usuarios digite *lista*\nPara finalizar digite *sair*');
+        'Seja bem vindo ao sistema de cadastro\nPara cadastrar digite *1*\nRemover um item *2*\nVer lista de usuarios digite *3*\nPara finalizar digite *sair*');
     String? txt = stdin.readLineSync();
     if (txt == 'sair') {
       print('=Fim=');
       condicao = false;
-    } else if (txt == 'cadastro') {
+    } else if (txt == '1') {
       print("\x1B[2J\x1B[0;0H");
-      cadastrar();
-    } else if (txt == 'lista') {
+      cadastrarEmpresa();
+    } else if (txt == '3') {
       imprimir();
       print('\n$cadastros\n');
-    } else if (txt == 'remover') {
+    } else if (txt == '2') {
       print("\x1B[2J\x1B[0;0H");
       remover();
     } else {
@@ -27,20 +29,42 @@ void main(List<String> arguments) {
   }
 }
 
-cadastrar() {
+cadastrarEmpresa() {
   Map<String, dynamic> cadastro = {};
-  print('===Cadastro===\nDigite seu nome:');
-  cadastro['nome'] = stdin.readLineSync();
+  print('Cadastro\nDigite seu CNPJ:');
+  int? cnpj = int.parse(stdin.readLineSync()!);
+  cadastro['cnpj'] = cnpj;
+
+  print('Digite sua Razão Social:');
+  String? razaoSocial = stdin.readLineSync();
+  cadastro['razao'] = razaoSocial;
+
+  print('Digite seu Nome fantasia:');
+  String? nomeF = stdin.readLineSync();
+  cadastro['nomeFantasia'] = nomeF;
 
   print('Digite seu telefone:');
-  String? telefone = stdin.readLineSync();
+  int? telefone = int.parse(stdin.readLineSync()!);
   cadastro['telefone'] = telefone;
 
-// print('Digite sua id:');
-// String? id = stdin.readLineSync();
-// cadastro['id'] = id;
-// print('$cadastro\n');
-// cadastros.add(cadastro);
+  print('Digite seu endereço:');
+  String? endereco = stdin.readLineSync();
+  cadastro['endereco'] = endereco;
+
+  print('Dados do Socio:\nCPF');
+  int? cpf = int.parse(stdin.readLineSync()!);
+  cadastro['cpf'] = cpf;
+
+  print('Digite seu Nome Completo:');
+  String? nome = stdin.readLineSync();
+  cadastro['nome'] = nome;
+
+  print('Digite seu endereço:');
+  String? enderecoPessoa = stdin.readLineSync();
+  cadastro['enderecoPessoa'] = enderecoPessoa;
+
+  print('$cadastro\n');
+  cadastros.add(cadastro);
 }
 
 imprimir() {

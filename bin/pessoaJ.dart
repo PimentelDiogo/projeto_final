@@ -1,3 +1,5 @@
+import 'endereco.dart';
+
 class PessoaJ {
   String? nomeFantasia;
   String? razaoSocial;
@@ -5,11 +7,13 @@ class PessoaJ {
   PessoaJ({required this.cnpj, this.nomeFantasia, this.razaoSocial});
 }
 
-class Empresa extends PessoaJ {
+abstract class Empresa extends PessoaJ implements Endereco {
   String? socio;
   Empresa({required this.socio})
       : super(
           cnpj: 0,
+          razaoSocial: '',
+          nomeFantasia: '',
         );
 
   meuEmpresa(Empresa e) {
