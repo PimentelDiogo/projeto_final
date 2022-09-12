@@ -8,7 +8,7 @@ class PessoaJ {
 }
 
 abstract class Empresa extends PessoaJ implements Endereco {
-  String? socio;
+  PessoaJ? socio;
   Empresa({required this.socio})
       : super(
           cnpj: 0,
