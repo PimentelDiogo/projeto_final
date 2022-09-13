@@ -1,16 +1,16 @@
+// importar as bibliotecas
 import 'dart:io';
 import 'package:projeto_final/projeto_final.dart' as projeto_final;
 import 'endereco.dart';
 import 'pessoaJ.dart';
 
-// importar as bibliotecas
 List<Map<String, dynamic>> cadastros = [];
 void main(List<String> arguments) {
   bool condicao = true;
   print("\x1B[2J\x1B[0;0H");
   while (condicao) {
     print(
-        'Seja bem vindo ao sistema de cadastro\nPara cadastrar digite *1*\nRemover um item *2*\nVer lista de empresas digite *3*\nPara finalizar digite *sair*');
+        'Seja bem vindo ao sistema de cadastro\nPara cadastrar digite *1*\nRemover uma empresa *2*\nVer lista de empresas digite *3*\nPara finalizar digite *sair*');
     String? txt = stdin.readLineSync();
     if (txt == 'sair') {
       print('=Fim=');
@@ -33,12 +33,11 @@ void main(List<String> arguments) {
 // ligar os input para objetos
 cadastrarEmpresa() {
   Map<String, dynamic> cadastro = {};
-  PessoaJ empresa = PessoaJ(cnpj: 0);
   print('Cadastro\nDigite seu CNPJ:');
-  empresa.cnpj = int.parse(stdin.readLineSync()!);
-  cadastro['cnpj'] = empresa.cnpj;
+  int? cnpj = int.parse(stdin.readLineSync()!);
+  cadastro['cnpj'] = cnpj;
 
-  /*print('Digite sua Razão Social:');
+  print('Digite sua Razão Social:');
   String? razaoSocial = stdin.readLineSync();
   cadastro['razao'] = razaoSocial;
 
@@ -50,9 +49,23 @@ cadastrarEmpresa() {
   int? telefone = int.parse(stdin.readLineSync()!);
   cadastro['telefone'] = telefone;
 
-  print('Digite seu endereço:');
-  String? endereco = stdin.readLineSync();
-  cadastro['endereco'] = endereco;
+  Endereco cadastroEnd() {
+    print('Digite seu endereço:\nRua: ');
+    String? rua = stdin.readLineSync();
+    print('Número: ');
+    int numero = int.parse(stdin.readLineSync()!);
+    print('Complemento: ');
+    String? complemento = stdin.readLineSync();
+    print('Bairro: ');
+    String? bairro = stdin.readLineSync();
+    print('Estado: ');
+    String? estado = stdin.readLineSync();
+    print('Cep: ');
+    int cep = int.parse(stdin.readLineSync()!);
+    Endereco end1 = Endereco(
+        rua: '', numero: 0, complemento: '', bairro: '', estado: '', cep: 0);
+    return end1;
+  }
 
   print('Dados do Socio:\nCPF');
   int? cpf = int.parse(stdin.readLineSync()!);
@@ -64,7 +77,7 @@ cadastrarEmpresa() {
 
   print('Digite seu endereço:');
   String? enderecoPessoa = stdin.readLineSync();
-  cadastro['enderecoPessoa'] = enderecoPessoa;*/
+  cadastro['enderecoPessoa'] = enderecoPessoa;
 
   print('$cadastro\n');
   cadastros.add(cadastro);
@@ -77,7 +90,7 @@ imprimir() {
 }
 
 remover() {
-  print('Qual item deseja remover? ');
+  print('Qual empresa deseja remover? ');
   imprimir();
   int input = int.parse(stdin.readLineSync()!);
   int item = int.parse('$input');
@@ -94,4 +107,8 @@ buscaCnpj() {
   RegExp validaCnpj = RegExp("[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}");
   stdout.write(
       validaCnpj.hasMatch('Insira seu CNPJ para encontrar sua empresa: '));
+}
+
+data() {
+  final data = DateTime.now();
 }
