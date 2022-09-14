@@ -1,6 +1,8 @@
 import 'endereco.dart';
 import 'package:uuid/uuid.dart';
 
+import 'socio.dart';
+
 class Empresa {
   Endereco? endereco;
   String? cnpj;
@@ -14,5 +16,6 @@ class Empresa {
       this.endereco,
       this.nomeFantasia,
       this.razaoSocial,
-      this.telefone});
+      this.telefone,
+      Socio? socio});
 }

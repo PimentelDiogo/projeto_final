@@ -33,33 +33,36 @@ void main(List<String> arguments) {
   }
 }
 
-// ligar os input para objetos
 cadastrarEmpresa() {
-  Map<String, dynamic> cadastro = {};
   cadEmpresa();
-  cadPessoaJ();
-  data();
-  print('$cadastro\n');
-  cadastros.add(cadastro);
 }
 
-PessoaJ cadEmpresa() {
+Empresa cadEmpresa() {
+  Map<String, dynamic> cadastro = {};
   print('Novo cadastro empresa');
   print('Digite seu CNPJ:');
   int? cnpj = int.parse(stdin.readLineSync()!);
 
   print('Digite sua Razão Social:');
-  String? razaoSocial = stdin.readLineSync();
+  String? razao = stdin.readLineSync();
 
   print('Digite seu Nome fantasia:');
-  String? nomeFantasia = stdin.readLineSync();
+  String? nomeF = stdin.readLineSync();
 
   print('Digite Telefone:');
-  int? telefone = int.parse(stdin.readLineSync()!);
-
+  int? tele = int.parse(stdin.readLineSync()!);
   Endereco end1 = cadastroEnd();
-  PessoaJ pj =
-      PessoaJ(id: '', cnpj: 0, razaoSocial: '', nomeFantasia: '', telefone: '');
+  Socio? socio1 = cadPessoaJ();
+  data();
+  Empresa pj = Empresa(
+      id: '',
+      cnpj: '',
+      razaoSocial: razao,
+      nomeFantasia: nomeF,
+      telefone: '',
+      endereco: end1,
+      socio: socio1);
+  cadastros.add(cadastro);
   return pj;
 }
 
