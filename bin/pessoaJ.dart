@@ -16,11 +16,11 @@ class PessoaJ {
       this.telefone});
   @override
   String toString() {
-    nomeFantasia = '$nomeFantasia';
-    razaoSocial = '$razaoSocial';
-    cnpj = '$cnpj' as int?;
-    telefone = '$telefone';
-    endereco = '$endereco' as Endereco;
+    // nomeFantasia = '$nomeFantasia';
+    // razaoSocial = '$razaoSocial';
+    // cnpj = '$cnpj' as int?;
+    // telefone = '$telefone';
+    // endereco = '$endereco' as Endereco;
     return '$nomeFantasia $cnpj $endereco $razaoSocial $telefone';
   }
 }

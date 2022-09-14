@@ -8,10 +8,10 @@ class PessoaF {
   PessoaF({required this.cpf, this.nome, this.socio, this.endereco});
   @override
   String toString() {
-    nome = '$nome';
-    cpf = '$cpf' as int?;
-    endereco = '$endereco' as Endereco;
-    socio = "$socio" as PessoaF?;
-    return '$nome $cpf $endereco $socio';
+    // nome = '$nome';
+    // cpf = '$cpf' as int?;
+    // endereco = '$endereco' as Endereco;
+    // socio = "$socio" as PessoaF?;
+    return 'Nome: $nome\nCPF: $cpf\nEndereço: $endereco';
   }
 }

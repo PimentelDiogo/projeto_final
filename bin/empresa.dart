@@ -4,6 +4,7 @@ import 'package:uuid/uuid.dart';
 import 'socio.dart';
 
 class Empresa {
+  Socio? socio;
   Endereco? endereco;
   int? cnpj;
   String? razaoSocial;
@@ -16,11 +17,12 @@ class Empresa {
       this.nomeFantasia,
       this.razaoSocial,
       this.telefone,
-      Socio? socio});
+      this.socio});
   @override
   String toString() {
     String id1 = '$id';
+    String socio1 = '$socio';
 
-    return '$id1';
+    return 'ID: $id1\nCNPJ: $cnpj\nRazão Social: $razaoSocial\nNome Fantasia: $nomeFantasia\nTelefone: $telefone\nEndereço: $endereco\nSocio: $socio1';
   }
 }

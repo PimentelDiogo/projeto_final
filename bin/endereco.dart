@@ -12,14 +12,14 @@ class Endereco {
       this.estado,
       this.numero,
       this.rua});
-
+  @override
   String toString() {
-    cep = '$cep' as int?;
-    rua = '$rua';
-    numero = '$numero' as int?;
-    complemento = '$complemento';
-    bairro = '$bairro';
-    estado = '$estado';
+    // cep = '$cep';
+    // rua = '$rua';
+    // numero = '$numero';
+    // complemento = '$complemento';
+    // bairro = '$bairro';
+    // estado = '$estado';
     return '$bairro $rua $cep $complemento $estado $numero';
   }
 }
