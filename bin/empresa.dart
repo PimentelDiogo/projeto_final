@@ -22,7 +22,8 @@ class Empresa {
   String toString() {
     String id1 = '$id';
     String socio1 = '$socio';
+    String end1 = '$endereco';
 
-    return 'ID: $id1\nCNPJ: $cnpj\nRazão Social: $razaoSocial\nNome Fantasia: $nomeFantasia\nTelefone: $telefone\nEndereço: $endereco\nSocio: $socio1';
+    return 'ID: $id1\nCNPJ: $cnpj\nRazão Social: $razaoSocial\nNome Fantasia: $nomeFantasia\nTelefone: $telefone\nEndereço: $end1\nSocio: $socio1';
   }
 }
