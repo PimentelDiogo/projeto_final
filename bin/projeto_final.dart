@@ -1,14 +1,16 @@
 // importar as bibliotecas
+import 'dart:core';
 import 'dart:io';
 import 'package:projeto_final/projeto_final.dart' as projeto_final;
+import 'package:uuid/uuid.dart';
 import 'empresa.dart';
 import 'endereco.dart';
 import 'pessoaF.dart';
 import 'pessoaJ.dart';
 import 'socio.dart';
 
-List<Map<String, dynamic>> cadastros = [];
-void main(List<String> arguments) {
+void main() {
+  List<Empresa> lista = [];
   bool condicao = true;
   print("\x1B[2J\x1B[0;0H");
   while (condicao) {
@@ -20,28 +22,25 @@ void main(List<String> arguments) {
       condicao = false;
     } else if (txt == '1') {
       print("\x1B[2J\x1B[0;0H");
-      cadastrarEmpresa();
+      lista = cadastrar(lista);
     } else if (txt == '3') {
-      imprimir();
-      print('\n$cadastros\n');
+      print('\n$lista\n');
+      lista.forEach(print);
     } else if (txt == '2') {
       print("\x1B[2J\x1B[0;0H");
-      remover();
+      remover(lista);
     } else {
       print('Comando não existe\n');
     }
   }
 }
 
-cadastrarEmpresa() {
-  cadEmpresa();
-}
+List<Empresa> cadastrar(List<Empresa> cadList) {
+  List<Empresa> aux = cadList;
 
-Empresa cadEmpresa() {
-  Map<String, dynamic> cadastro = {};
   print('Novo cadastro empresa');
   print('Digite seu CNPJ:');
-  int? cnpj = int.parse(stdin.readLineSync()!);
+  String? cnpj = stdin.readLineSync();
 
   print('Digite sua Razão Social:');
   String? razao = stdin.readLineSync();
@@ -50,40 +49,39 @@ Empresa cadEmpresa() {
   String? nomeF = stdin.readLineSync();
 
   print('Digite Telefone:');
-  int? tele = int.parse(stdin.readLineSync()!);
-  Endereco end1 = cadastroEnd();
-  Socio? socio1 = cadPessoaJ();
+  String? tele = stdin.readLineSync();
+  Endereco end1 = cadastroEnd(cadList);
+  Socio? socio1 = cadPessoaJ(cadList);
   data();
   Empresa pj = Empresa(
-      id: '',
-      cnpj: '',
+      cnpj: cnpj,
       razaoSocial: razao,
       nomeFantasia: nomeF,
-      telefone: '',
+      telefone: tele,
       endereco: end1,
       socio: socio1);
-  cadastros.add(cadastro);
-  return pj;
+  aux.add(pj);
+  return aux;
 }
 
-PessoaF cadPessoaF() {
+PessoaF cadPessoaF(List<Empresa> cadList) {
   print('Digite seu CPF:');
   int? cpf = int.parse(stdin.readLineSync()!);
 
   print('Digite seu Nome Completo:');
   String? nome = stdin.readLineSync();
 
-  Endereco end1 = cadastroEnd();
-  PessoaF pf = PessoaF(cpf: 0, nome: '');
+  Endereco end1 = cadastroEnd(cadList);
+  PessoaF pf = PessoaF(cpf: cpf, nome: nome);
   return pf;
 }
 
-Socio? cadPessoaJ() {
+Socio? cadPessoaJ(List<Empresa> cadList) {
   print('Dados do Socio:\npara CNPJ digite _1_\npara CPF digite _2_:');
   String? txt = stdin.readLineSync();
   if (txt == '1') {
     print('Cadastro\nDigite seu CNPJ:');
-    int? cnpjSocio = int.parse(stdin.readLineSync()!);
+    String? cnpjSocio = stdin.readLineSync()!;
 
     print('Digite sua Razão Social:');
     String? razaoSocialSocio = stdin.readLineSync();
@@ -91,15 +89,18 @@ Socio? cadPessoaJ() {
     print('Digite seu Nome fantasia:');
     String? nomeFsocio = stdin.readLineSync();
 
-    Endereco end1 = cadastroEnd();
-    Socio socio1 = Socio(cnpj: '', razaoSocial: '', nomeFantasia: '');
+    Endereco end1 = cadastroEnd(cadList);
+    Socio socio1 = Socio(
+        cnpj: cnpjSocio,
+        razaoSocial: razaoSocialSocio,
+        nomeFantasia: nomeFsocio);
     return socio1;
   } else if (txt == '2') {
-    cadPessoaF();
+    cadPessoaF(cadList);
   }
 }
 
-Endereco cadastroEnd() {
+Endereco cadastroEnd(List<Empresa> cadList) {
   print('Digite seu endereço:\nRua: ');
   String? rua1 = stdin.readLineSync();
   print('Número: ');
@@ -113,22 +114,33 @@ Endereco cadastroEnd() {
   print('Cep: ');
   int cep1 = int.parse(stdin.readLineSync()!);
   Endereco end1 = Endereco(
-      rua: '', numero: 0, complemento: '', bairro: '', estado: '', cep: 0);
+      rua: rua1,
+      numero: numero1,
+      complemento: complemento1,
+      bairro: bairro1,
+      estado: estado1,
+      cep: cep1);
   return end1;
 }
 
-imprimir() {
-  for (var i = 0; i < cadastros.length; i++) {
-    print('ID $i - ${cadastros[i]}');
+void imprimir(List<Empresa> cadList) {
+  print("Entre com o ID da empresa: ");
+  String input = stdin.readLineSync()!;
+
+  for (int i = 0; i < cadList.length; i++) {
+    if (input == cadList[i].id) {
+      print("${cadList[i]}");
+      i = cadList.length;
+    }
   }
 }
 
-remover() {
-  print('Qual empresa deseja remover? ');
-  imprimir();
+void remover(List<Empresa> cadList) {
+  print('Qual empresa deseja remover pelo ID? ');
+  imprimir(cadList);
   int input = int.parse(stdin.readLineSync()!);
   int item = int.parse('$input');
-  cadastros.removeAt(item);
+  cadList.removeAt(item);
 }
 
 buscaCpf() {

@@ -11,11 +11,15 @@ class Empresa {
   String? telefone;
   var id = Uuid().v4();
   Empresa(
-      {required this.id,
-      this.cnpj,
+      {required this.cnpj,
       this.endereco,
       this.nomeFantasia,
       this.razaoSocial,
       this.telefone,
       Socio? socio});
+  @override
+  String toString() {
+    String id1 = '$id';
+    return '$id1';
+  }
 }

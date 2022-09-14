@@ -21,4 +21,86 @@ Razão Social: Lavínia e Tereza Locações de Automóveis Ltda
 Nome Fantasia: Loc. Auto
 Endereço: Rua Ângelo Alberto Nesti, 639, Bussocaba, Osasco/SP, 06.053-060*/
 
+import 'dart:io';
+import 'package:uuid/uuid.dart';
+//import '../desafio/lib/quadrado.dart';
 
+class Quadrado {
+  final id = Uuid().v4();
+  double altura;
+  double base;
+
+  Quadrado({required this.altura, required this.base});
+
+  double calculaArea() => altura * base;
+
+  @override
+  String toString() {
+    String aux1 = "ID: $id";
+    String aux2 = "ALTURA: $altura";
+    String aux = "BASE: $base";
+
+    return "\n$aux1\n$aux2\n$aux";
+  }
+}
+
+void main() {
+  List<Quadrado> lista = [];
+  int opcao = 0;
+
+  do {
+    print("\t====MENU====");
+    print("1... Cadastrar novo quadrado");
+    print("2... Calcular a area de uma quadrado por ID");
+    print("3... Listar quadrados");
+    print("4... Sair");
+    stdout.write("Opcao: ");
+
+    opcao = int.parse(stdin.readLineSync()!);
+
+    switch (opcao) {
+      case 1:
+        lista = cadastrar(lista);
+        break;
+      case 2:
+        retornaAreaPeloId(lista);
+        break;
+      case 3:
+        print("\n\t=== REGISTRO DE QUADRADOS ===");
+        lista.forEach(print);
+        break;
+      case 4:
+        break;
+      default:
+        print("\nopcao invalida");
+    }
+  } while (opcao != 4);
+}
+
+List<Quadrado> cadastrar(List<Quadrado> l) {
+  List<Quadrado> aux = l;
+
+  print("\t=== CADASTRO ====");
+  stdout.write("Entre com a medida de altura do seu quadrado: ");
+  double altura = double.parse(stdin.readLineSync()!);
+  stdout.write("Entre com a medida da base do seu quadrado: ");
+  double base = double.parse(stdin.readLineSync()!);
+
+  Quadrado q = Quadrado(altura: altura, base: base);
+
+  aux.add(q);
+
+  return aux;
+}
+
+void retornaAreaPeloId(List<Quadrado> l) {
+  stdout.write("Entre com o ID do quadrado que deseja obter a area: ");
+  String idAux = stdin.readLineSync()!;
+
+  for (int i = 0; i < l.length; i++) {
+    if (idAux == l[i].id) {
+      print("Area = ${l[i].calculaArea()}");
+      i = l.length;
+    }
+  }
+}
