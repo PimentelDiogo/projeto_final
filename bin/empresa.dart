@@ -5,10 +5,10 @@ import 'socio.dart';
 
 class Empresa {
   Endereco? endereco;
-  String? cnpj;
+  int? cnpj;
   String? razaoSocial;
   String? nomeFantasia;
-  String? telefone;
+  int? telefone;
   var id = Uuid().v4();
   Empresa(
       {required this.cnpj,
@@ -20,6 +20,7 @@ class Empresa {
   @override
   String toString() {
     String id1 = '$id';
+
     return '$id1';
   }
 }

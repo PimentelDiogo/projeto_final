@@ -13,7 +13,13 @@ class Endereco {
       this.numero,
       this.rua});
 
-  meuEdereco(Endereco e) {
-    print('${e.rua}${e.numero}${e.complemento}${e.bairro}${e.cep}${e.estado}');
+  String toString() {
+    cep = '$cep' as int?;
+    rua = '$rua';
+    numero = '$numero' as int?;
+    complemento = '$complemento';
+    bairro = '$bairro';
+    estado = '$estado';
+    return '$bairro $rua $cep $complemento $estado $numero';
   }
 }

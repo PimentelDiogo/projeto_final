@@ -54,10 +54,10 @@ List<Empresa> cadastrar(List<Empresa> cadList) {
   Socio? socio1 = cadPessoaJ(cadList);
   data();
   Empresa pj = Empresa(
-      cnpj: cnpj,
+      cnpj: 0,
       razaoSocial: razao,
       nomeFantasia: nomeF,
-      telefone: tele,
+      telefone: 0,
       endereco: end1,
       socio: socio1);
   aux.add(pj);

@@ -6,8 +6,12 @@ class PessoaF {
   Endereco? endereco;
   PessoaF? socio;
   PessoaF({required this.cpf, this.nome, this.socio, this.endereco});
-
-  meuPessoaF(PessoaF pf) {
-    print('${pf.cpf}${pf.nome}');
+  @override
+  String toString() {
+    nome = '$nome';
+    cpf = '$cpf' as int?;
+    endereco = '$endereco' as Endereco;
+    socio = "$socio" as PessoaF?;
+    return '$nome $cpf $endereco $socio';
   }
 }
