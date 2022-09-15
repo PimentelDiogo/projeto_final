@@ -9,6 +9,6 @@ class PessoaF extends Socio {
       : super(endereco: endereco);
   @override
   String toString() {
-    return 'Nome: $nome\nCPF: $cpf\nEndereço: $endereco';
+    return '\nNome: $nome\nCPF: ${cpf.substring(0, 3)}.${cpf.substring(3, 6)}.${cpf.substring(6, 9)}-${cpf.substring(9, 11)}\nEndereço: $endereco';
   }
 }

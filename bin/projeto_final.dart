@@ -7,16 +7,16 @@ import 'pessoa_f.dart';
 import 'pessoa_j.dart';
 import 'socio.dart';
 
+List<Empresa> lista = [];
 void main() {
-  List<Empresa> lista = [];
   bool condicao = true;
   print("\x1B[2J\x1B[0;0H");
   while (condicao) {
     print(
-        'Seja bem vindo ao sistema de cadastro\nPara cadastrar digite _1_\nRemover uma empresa _2_\nVer lista de empresas digite _3_\nPara finalizar digite *sair*');
+        '_Seja bem vindo ao sistema de cadastro_\nPara cadastrar digite _1_\nRemover uma empresa _2_\nVer lista de empresas digite _3_\nPara finalizar digite _sair_');
     String? txt = stdin.readLineSync();
     if (txt == 'sair') {
-      print('=Fim=');
+      print('_Fim_');
       condicao = false;
     } else if (txt == '1') {
       print("\x1B[2J\x1B[0;0H");
@@ -26,7 +26,7 @@ void main() {
       lista.forEach(print);
     } else if (txt == '2') {
       print("\x1B[2J\x1B[0;0H");
-      remover(lista);
+      remover();
     } else {
       print('Comando não existe\n');
     }
@@ -66,10 +66,8 @@ Socio cadSocio() {
   int opcao;
   Socio a;
   do {
-    print('\nEntre com os dados do sócio');
-    print('_1_ Pessoa Física');
-    print('_2_ Pessoa Juridica');
-    stdout.write('Opcao: ');
+    print('\nCadastro sócio\n_1_ Pessoa Física\n_2_ Pessoa Juridica');
+    print('Opcao: ');
     opcao = int.parse(stdin.readLineSync()!);
   } while ((opcao != 1) && (opcao != 2));
 
@@ -146,12 +144,12 @@ void imprimir(List<Empresa> cadList) {
   }
 }
 
-void remover(List<Empresa> cadList) {
+void remover() {
   print('Qual empresa deseja remover pelo ID? ');
-  imprimir(cadList);
+  imprimir(lista);
   int input = int.parse(stdin.readLineSync()!);
   int item = int.parse('$input');
-  cadList.removeAt(item);
+  lista.removeAt(item);
 }
 
 buscaCpf() {

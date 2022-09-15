@@ -23,6 +23,6 @@ class Empresa {
       required this.socio});
   @override
   String toString() {
-    return 'ID: $id\nCNPJ: $cnpj\nRazão Social: $razaoSocial\nNome Fantasia: $nomeFantasia\nTelefone: $telefone\nEndereço: $endereco\nSocio: $socio';
+    return 'ID: $id\nCNPJ: ${cnpj.substring(0, 2)}.${cnpj.substring(2, 5)}.${cnpj.substring(5, 8)}/${cnpj.substring(8, 12)}-${cnpj.substring(12, 14)}\nRazão Social: $razaoSocial\nNome Fantasia: $nomeFantasia\nTelefone com DDD: (${telefone.substring(0, 2)}) ${telefone.substring(2, 3)} ${telefone.substring(3, 7)}-${telefone.substring(7, 11)}\nEndereço: $endereco\nSocio: $socio';
   }
 }

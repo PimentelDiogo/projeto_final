@@ -14,6 +14,6 @@ class Endereco {
       required this.rua});
   @override
   String toString() {
-    return '$bairro $rua $cep $complemento $estado $numero';
+    return '$rua, $numero, $complemento $bairro/$estado , $cep';
   }
 }
