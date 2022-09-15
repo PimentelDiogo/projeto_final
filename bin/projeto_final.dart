@@ -13,7 +13,7 @@ void main() {
   print("\x1B[2J\x1B[0;0H");
   while (condicao) {
     print(
-        '_Seja bem vindo ao sistema de cadastro_\nPara cadastrar digite _1_\nRemover uma empresa _2_\nVer lista de empresas digite _3_\nPara finalizar digite _sair_');
+        '\n_Seja bem vindo ao sistema de cadastro_\nPara cadastrar digite _1_\nRemover uma empresa _2_\nVer lista de empresas digite _3_\nPara finalizar digite _sair_');
     String? txt = stdin.readLineSync();
     if (txt == 'sair') {
       print('_Fim_');
@@ -22,7 +22,7 @@ void main() {
       print("\x1B[2J\x1B[0;0H");
       lista = cadastrar(lista);
     } else if (txt == '3') {
-      print('\n$lista\n');
+      //print('\n$lista\n');
       lista.forEach(print);
     } else if (txt == '2') {
       print("\x1B[2J\x1B[0;0H");
@@ -46,7 +46,7 @@ List<Empresa> cadastrar(List<Empresa> cadList) {
   print('Digite seu Nome fantasia:');
   String nomeF = stdin.readLineSync()!;
 
-  print('Digite Telefone:');
+  print('Digite Telefone com DDD:');
   String tele = stdin.readLineSync()!;
   Endereco end1 = cadastroEnd();
   Socio socio1 = cadSocio();
@@ -66,7 +66,8 @@ Socio cadSocio() {
   int opcao;
   Socio a;
   do {
-    print('\nCadastro sócio\n_1_ Pessoa Física\n_2_ Pessoa Juridica');
+    print(
+        '\nCadastro sócio\nDigite _1_ Pessoa Física\nDigite _2_ Pessoa Juridica');
     print('Opcao: ');
     opcao = int.parse(stdin.readLineSync()!);
   } while ((opcao != 1) && (opcao != 2));
@@ -145,11 +146,10 @@ void imprimir(List<Empresa> cadList) {
 }
 
 void remover() {
-  print('Qual empresa deseja remover pelo ID? ');
   imprimir(lista);
-  int input = int.parse(stdin.readLineSync()!);
-  int item = int.parse('$input');
-  lista.removeAt(item);
+  print('Qual empresa deseja remover pelo ID? ');
+  String input = stdin.readLineSync()!;
+  lista.remove(input);
 }
 
 buscaCpf() {
