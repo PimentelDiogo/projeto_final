@@ -21,3 +21,20 @@ Razão Social: Lavínia e Tereza Locações de Automóveis Ltda
 Nome Fantasia: Loc. Auto
 Endereço: Rua Ângelo Alberto Nesti, 639, Bussocaba, Osasco/SP, 06.053-060*/
 
+import 'dart:io';
+
+main() {
+  print('Novo cadastro empresa');
+  print('Digite seu cpf:');
+  String cpf = stdin.readLineSync()!;
+
+  // print('Digite sua Razão Social:');
+  // String razao = stdin.readLineSync()!;
+
+  // print('Digite seu Nome fantasia:');
+  // String nomeF = stdin.readLineSync()!;
+
+  // print('Digite Telefone:');
+  // String tele = stdin.readLineSync()!;
+  print('\nCpf CNPJ: ');
+}
