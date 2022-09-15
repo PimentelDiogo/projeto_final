@@ -1,12 +1,10 @@
 // importar as bibliotecas
 import 'dart:core';
 import 'dart:io';
-import 'package:projeto_final/projeto_final.dart' as projeto_final;
-import 'package:uuid/uuid.dart';
 import 'empresa.dart';
 import 'endereco.dart';
-import 'pessoaF.dart';
-import 'pessoaJ.dart';
+import 'pessoa_f.dart';
+import 'pessoa_j.dart';
 import 'socio.dart';
 
 void main() {
@@ -15,7 +13,7 @@ void main() {
   print("\x1B[2J\x1B[0;0H");
   while (condicao) {
     print(
-        'Seja bem vindo ao sistema de cadastro\nPara cadastrar digite *1*\nRemover uma empresa *2*\nVer lista de empresas digite *3*\nPara finalizar digite *sair*');
+        'Seja bem vindo ao sistema de cadastro\nPara cadastrar digite _1_\nRemover uma empresa _2_\nVer lista de empresas digite _3_\nPara finalizar digite *sair*');
     String? txt = stdin.readLineSync();
     if (txt == 'sair') {
       print('=Fim=');
@@ -40,79 +38,92 @@ List<Empresa> cadastrar(List<Empresa> cadList) {
 
   print('Novo cadastro empresa');
   print('Digite seu CNPJ:');
-  String? cnpj = stdin.readLineSync();
+  String cnpj = stdin.readLineSync()!;
 
   print('Digite sua Razão Social:');
-  String? razao = stdin.readLineSync();
+  String razao = stdin.readLineSync()!;
 
   print('Digite seu Nome fantasia:');
-  String? nomeF = stdin.readLineSync();
+  String nomeF = stdin.readLineSync()!;
 
   print('Digite Telefone:');
-  String? tele = stdin.readLineSync();
-  Endereco end1 = cadastroEnd(cadList);
-  Socio? socio1 = cadPessoaJ(cadList);
-  data();
+  String tele = stdin.readLineSync()!;
+  Endereco end1 = cadastroEnd();
+  Socio socio1 = cadSocio();
+
   Empresa pj = Empresa(
-      cnpj: 0,
+      cnpj: cnpj,
       razaoSocial: razao,
       nomeFantasia: nomeF,
-      telefone: 0,
+      telefone: tele,
       endereco: end1,
       socio: socio1);
   aux.add(pj);
   return aux;
 }
 
-PessoaF cadPessoaF(List<Empresa> cadList) {
+Socio cadSocio() {
+  int opcao;
+  Socio a;
+  do {
+    print('\nEntre com os dados do sócio');
+    print('_1_ Pessoa Física');
+    print('_2_ Pessoa Juridica');
+    stdout.write('Opcao: ');
+    opcao = int.parse(stdin.readLineSync()!);
+  } while ((opcao != 1) && (opcao != 2));
+
+  if (opcao == 1) {
+    a = cadPessoaF();
+  } else {
+    a = cadPessoaJ();
+  }
+  return a;
+}
+
+PessoaF cadPessoaF() {
   print('Digite seu CPF:');
-  int? cpf = int.parse(stdin.readLineSync()!);
+  String cpf = stdin.readLineSync()!;
 
   print('Digite seu Nome Completo:');
-  String? nome = stdin.readLineSync();
+  String nome = stdin.readLineSync()!;
 
-  Endereco end1 = cadastroEnd(cadList);
-  PessoaF pf = PessoaF(cpf: cpf, nome: nome);
+  Endereco end1 = cadastroEnd();
+  PessoaF pf = PessoaF(cpf: cpf, nome: nome, endereco: end1);
   return pf;
 }
 
-Socio? cadPessoaJ(List<Empresa> cadList) {
-  print('Dados do Socio:\npara CNPJ digite _1_\npara CPF digite _2_:');
-  String? txt = stdin.readLineSync();
-  if (txt == '1') {
-    print('Cadastro\nDigite seu CNPJ:');
-    String? cnpjSocio = stdin.readLineSync()!;
+PessoaJ cadPessoaJ() {
+  print('Cadastro\nDigite seu CNPJ:');
+  String cnpjSocio = stdin.readLineSync()!;
 
-    print('Digite sua Razão Social:');
-    String? razaoSocialSocio = stdin.readLineSync();
+  print('Digite sua Razão Social:');
+  String razaoSocialSocio = stdin.readLineSync()!;
 
-    print('Digite seu Nome fantasia:');
-    String? nomeFsocio = stdin.readLineSync();
-
-    Endereco end1 = cadastroEnd(cadList);
-    Socio socio1 = Socio(
-        cnpj: cnpjSocio,
-        razaoSocial: razaoSocialSocio,
-        nomeFantasia: nomeFsocio);
-    return socio1;
-  } else if (txt == '2') {
-    cadPessoaF(cadList);
-  }
+  print('Digite seu Nome fantasia:');
+  String nomeFsocio = stdin.readLineSync()!;
+  Endereco end1 = cadastroEnd();
+  PessoaJ pj = PessoaJ(
+      cnpj: cnpjSocio,
+      nomeFantasia: nomeFsocio,
+      razaoSocial: razaoSocialSocio,
+      endereco: end1);
+  return pj;
 }
 
-Endereco cadastroEnd(List<Empresa> cadList) {
+Endereco cadastroEnd() {
   print('Digite seu endereço:\nRua: ');
-  String? rua1 = stdin.readLineSync();
+  String rua1 = stdin.readLineSync()!;
   print('Número: ');
   int numero1 = int.parse(stdin.readLineSync()!);
   print('Complemento: ');
-  String? complemento1 = stdin.readLineSync();
+  String complemento1 = stdin.readLineSync()!;
   print('Bairro: ');
-  String? bairro1 = stdin.readLineSync();
+  String bairro1 = stdin.readLineSync()!;
   print('Estado: ');
-  String? estado1 = stdin.readLineSync();
+  String estado1 = stdin.readLineSync()!;
   print('Cep: ');
-  int cep1 = int.parse(stdin.readLineSync()!);
+  String cep1 = stdin.readLineSync()!;
   Endereco end1 = Endereco(
       rua: rua1,
       numero: numero1,
@@ -153,8 +164,4 @@ buscaCnpj() {
   RegExp validaCnpj = RegExp("[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}");
   stdout.write(
       validaCnpj.hasMatch('Insira seu CNPJ para encontrar sua empresa: '));
-}
-
-data() {
-  final data = DateTime.now();
 }

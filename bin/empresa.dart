@@ -1,29 +1,28 @@
 import 'endereco.dart';
+// ignore: depend_on_referenced_packages
 import 'package:uuid/uuid.dart';
-
 import 'socio.dart';
 
+// refatorar , por como required
 class Empresa {
-  Socio? socio;
-  Endereco? endereco;
-  int? cnpj;
-  String? razaoSocial;
-  String? nomeFantasia;
-  int? telefone;
-  var id = Uuid().v4();
+  Socio socio;
+  Endereco endereco;
+  String cnpj;
+  String razaoSocial;
+  String nomeFantasia;
+  String telefone;
+  final String id = Uuid()
+      .v4(); // deixar como final, para não ter possibilidade de alteração.
+  final data = DateTime.now(); // ele gera automatico por ser função.
   Empresa(
       {required this.cnpj,
-      this.endereco,
-      this.nomeFantasia,
-      this.razaoSocial,
-      this.telefone,
-      this.socio});
+      required this.endereco,
+      required this.nomeFantasia,
+      required this.razaoSocial,
+      required this.telefone,
+      required this.socio});
   @override
   String toString() {
-    String id1 = '$id';
-    String socio1 = '$socio';
-    String end1 = '$endereco';
-
-    return 'ID: $id1\nCNPJ: $cnpj\nRazão Social: $razaoSocial\nNome Fantasia: $nomeFantasia\nTelefone: $telefone\nEndereço: $end1\nSocio: $socio1';
+    return 'ID: $id\nCNPJ: $cnpj\nRazão Social: $razaoSocial\nNome Fantasia: $nomeFantasia\nTelefone: $telefone\nEndereço: $endereco\nSocio: $socio';
   }
 }

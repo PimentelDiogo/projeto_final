@@ -1,25 +1,19 @@
 class Endereco {
-  int? cep;
-  String? rua;
-  int? numero;
-  String? complemento;
-  String? bairro;
-  String? estado;
+  String cep;
+  String rua;
+  int numero;
+  String complemento;
+  String bairro;
+  String estado;
   Endereco(
       {required this.bairro,
-      this.cep,
-      this.complemento,
-      this.estado,
-      this.numero,
-      this.rua});
+      required this.cep,
+      required this.complemento,
+      required this.estado,
+      required this.numero,
+      required this.rua});
   @override
   String toString() {
-    // cep = '$cep';
-    // rua = '$rua';
-    // numero = '$numero';
-    // complemento = '$complemento';
-    // bairro = '$bairro';
-    // estado = '$estado';
     return '$bairro $rua $cep $complemento $estado $numero';
   }
 }
